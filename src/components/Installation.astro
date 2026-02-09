@@ -5,9 +5,24 @@
 <section id="install" class="section">
   <div class="install-header reveal">
     <h2 class="section-title">
-      Get Started in <span class="gradient-text">3 Steps</span>
+      Get Started in <span class="gradient-text">Minutes</span>
     </h2>
-    <p class="section-subtitle">From zero to intelligent memory in under a minute. Pick your IDE.</p>
+    <p class="section-subtitle">Complete setup guide for every supported IDE. No external docs needed.</p>
+  </div>
+
+  <!-- Prerequisites -->
+  <div class="prereq-box glass-subtle reveal">
+    <h3 class="prereq-title">Prerequisites</h3>
+    <div class="prereq-items">
+      <div class="prereq-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+        <span><strong>Bun</strong> v1.0+ &mdash; install from <a href="https://bun.sh" target="_blank" rel="noopener noreferrer" class="prereq-link">bun.sh</a></span>
+      </div>
+      <div class="prereq-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+        <span><strong>Git</strong> &mdash; for cloning the repository</span>
+      </div>
+    </div>
   </div>
 
   <!-- IDE Tabs -->
@@ -35,22 +50,22 @@
     </button>
   </div>
 
-  <!-- Claude Code Panel -->
+  <!-- ===== Claude Code Panel ===== -->
   <div class="tab-panel active" id="panel-claude-code">
     <div class="install-steps">
-      <!-- Step 1 -->
+
+      <!-- Step 1: Clone & Build -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">1</span>
         </div>
         <div class="step-content">
           <h3 class="step-title font-heading">Clone &amp; Build</h3>
-          <p class="step-desc">Clone the repository and build with Bun.</p>
+          <p class="step-desc">Clone the Smriti repository and build the plugin bundle. This creates a single-file worker at <code class="inline-code">plugin/scripts/worker-service.cjs</code>.</p>
           <div class="code-block step-code">
             <button
               class="copy-btn"
-              data-code="git clone https://github.com/shubhrai2811/Smriti.git
-cd Smriti && bun install && bun run build"
+              data-code="git clone https://github.com/shubhrai2811/Smriti.git&#10;cd Smriti&#10;bun install&#10;bun run build"
               aria-label="Copy to clipboard"
             >
               <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -61,25 +76,26 @@ cd Smriti && bun install && bun run build"
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </button>
-            <pre><code><span class="line"><span class="comment">$ </span>git clone https://github.com/shubhrai2811/Smriti.git</span>
-<span class="line"><span class="comment">$ </span>cd Smriti && bun install && bun run build</span></code></pre>
+            <pre><code><span class="line"><span class="prompt">$</span> git clone https://github.com/shubhrai2811/Smriti.git</span>
+<span class="line"><span class="prompt">$</span> cd Smriti</span>
+<span class="line"><span class="prompt">$</span> bun install</span>
+<span class="line"><span class="prompt">$</span> bun run build</span></code></pre>
           </div>
         </div>
       </div>
 
-      <!-- Step 2 -->
+      <!-- Step 2: Register Plugin -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">2</span>
         </div>
         <div class="step-content">
-          <h3 class="step-title font-heading">Register Hooks</h3>
-          <p class="step-desc">Add Smriti to your Claude Code hooks configuration.</p>
+          <h3 class="step-title font-heading">Register Plugin</h3>
+          <p class="step-desc">Register Smriti as a Claude Code plugin. This sets up all the hooks automatically &mdash; <code class="inline-code">SessionStart</code>, <code class="inline-code">PostToolUse</code>, <code class="inline-code">UserPromptSubmit</code>, and <code class="inline-code">Stop</code>.</p>
           <div class="code-block step-code">
             <button
               class="copy-btn"
-              data-code="# Add to your Claude Code hooks configuration
-# See README for detailed hook setup"
+              data-code="claude plugin add ./plugin"
               aria-label="Copy to clipboard"
             >
               <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -90,58 +106,68 @@ cd Smriti && bun install && bun run build"
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </button>
-            <pre><code><span class="line"><span class="comment"># Add to your Claude Code hooks configuration</span></span>
-<span class="line"><span class="comment"># See README for detailed hook setup</span></span></code></pre>
+            <pre><code><span class="line"><span class="prompt">$</span> claude plugin add ./plugin</span></code></pre>
           </div>
-          <a href="https://github.com/shubhrai2811/Smriti#claude-code-hooks" class="step-link" target="_blank" rel="noopener noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            View hook setup guide
-          </a>
+          <p class="step-note">Run this from inside the <code class="inline-code">Smriti</code> directory.</p>
         </div>
       </div>
 
-      <!-- Step 3 -->
+      <!-- Step 3: Verify -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">3</span>
         </div>
         <div class="step-content">
-          <h3 class="step-title font-heading">Start Coding</h3>
-          <p class="step-desc">
-            That's it. Smriti activates automatically on your next Claude Code session. Your AI will start remembering.
-          </p>
+          <h3 class="step-title font-heading">Verify &amp; Start Coding</h3>
+          <p class="step-desc">That's it! Smriti will automatically start on your next Claude Code session. It will observe tool calls, extract knowledge, and inject relevant context into future sessions. Optionally verify it's running:</p>
+          <div class="code-block step-code">
+            <button
+              class="copy-btn"
+              data-code="# Check worker health (after starting a Claude Code session)&#10;curl http://127.0.0.1:PORT/health&#10;&#10;# Open the web dashboard&#10;open http://127.0.0.1:PORT/ui"
+              aria-label="Copy to clipboard"
+            >
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+            <pre><code><span class="line"><span class="code-comment"># Check worker health (after starting a Claude Code session)</span></span>
+<span class="line"><span class="prompt">$</span> curl http://127.0.0.1:&lt;port&gt;/health</span>
+<span class="line"></span>
+<span class="line"><span class="code-comment"># Open the web dashboard</span></span>
+<span class="line"><span class="prompt">$</span> open http://127.0.0.1:&lt;port&gt;/ui</span></code></pre>
+          </div>
           <div class="ready-badge">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
-            <span>Ready to go</span>
+            <span>Ready! Smriti activates automatically on next session</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Cursor Panel -->
+  <!-- ===== Cursor Panel ===== -->
   <div class="tab-panel" id="panel-cursor">
     <div class="install-steps">
-      <!-- Step 1 -->
+
+      <!-- Step 1: Clone & Build -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">1</span>
         </div>
         <div class="step-content">
           <h3 class="step-title font-heading">Clone &amp; Build</h3>
-          <p class="step-desc">Clone the repository and build with Bun.</p>
+          <p class="step-desc">Clone the Smriti repository and build the plugin bundle.</p>
           <div class="code-block step-code">
             <button
               class="copy-btn"
-              data-code="git clone https://github.com/shubhrai2811/Smriti.git
-cd Smriti && bun install && bun run build"
+              data-code="git clone https://github.com/shubhrai2811/Smriti.git&#10;cd Smriti&#10;bun install&#10;bun run build"
               aria-label="Copy to clipboard"
             >
               <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -152,25 +178,26 @@ cd Smriti && bun install && bun run build"
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </button>
-            <pre><code><span class="line"><span class="comment">$ </span>git clone https://github.com/shubhrai2811/Smriti.git</span>
-<span class="line"><span class="comment">$ </span>cd Smriti && bun install && bun run build</span></code></pre>
+            <pre><code><span class="line"><span class="prompt">$</span> git clone https://github.com/shubhrai2811/Smriti.git</span>
+<span class="line"><span class="prompt">$</span> cd Smriti</span>
+<span class="line"><span class="prompt">$</span> bun install</span>
+<span class="line"><span class="prompt">$</span> bun run build</span></code></pre>
           </div>
         </div>
       </div>
 
-      <!-- Step 2 -->
+      <!-- Step 2: Install Hooks -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">2</span>
         </div>
         <div class="step-content">
-          <h3 class="step-title font-heading">Configure Cursor</h3>
-          <p class="step-desc">Add Smriti to your Cursor rules and copy the adapter config.</p>
+          <h3 class="step-title font-heading">Install Cursor Hooks</h3>
+          <p class="step-desc">Run the automated install script. It sets up <code class="inline-code">~/.cursor/hooks/hooks.json</code> with all required hooks and backs up any existing config.</p>
           <div class="code-block step-code">
             <button
               class="copy-btn"
-              data-code="# Add Smriti to your Cursor rules
-# Copy the adapter config to .cursor/"
+              data-code="bash scripts/install-cursor.sh"
               aria-label="Copy to clipboard"
             >
               <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -181,179 +208,291 @@ cd Smriti && bun install && bun run build"
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </button>
-            <pre><code><span class="line"><span class="comment"># Add Smriti to your Cursor rules</span></span>
-<span class="line"><span class="comment"># Copy the adapter config to .cursor/</span></span></code></pre>
+            <pre><code><span class="line"><span class="prompt">$</span> bash scripts/install-cursor.sh</span></code></pre>
           </div>
-          <a href="https://github.com/shubhrai2811/Smriti#cursor-integration" class="step-link" target="_blank" rel="noopener noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            View Cursor setup guide
-          </a>
+
+          <!-- Manual toggle -->
+          <details class="manual-details">
+            <summary class="manual-summary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+              Prefer manual setup? Click to expand
+            </summary>
+            <div class="manual-content">
+              <p class="step-desc">Create <code class="inline-code">~/.cursor/hooks/hooks.json</code> with this config. Replace <code class="inline-code">/path/to/Smriti</code> with your actual clone path.</p>
+              <div class="code-block step-code manual-code">
+                <button
+                  class="copy-btn"
+                  data-code="mkdir -p ~/.cursor/hooks&#10;# Then create ~/.cursor/hooks/hooks.json&#10;# See the full JSON config above"
+                  aria-label="Copy to clipboard"
+                >
+                  <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                  <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </button>
+                <pre><code><span class="line"><span class="prompt">$</span> mkdir -p ~/.cursor/hooks</span>
+<span class="line"></span>
+<span class="line"><span class="code-comment"># Create ~/.cursor/hooks/hooks.json with:</span></span>
+<span class="line">&#123;</span>
+<span class="line">  <span class="json-key">"hooks"</span>: &#123;</span>
+<span class="line">    <span class="json-key">"SessionStart"</span>: [&#123; <span class="json-key">"matcher"</span>: <span class="json-str">""</span>, <span class="json-key">"hooks"</span>: [</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"/path/to/Smriti/plugin/scripts/worker-service.cjs start"</span> &#125;,</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"/path/to/Smriti/plugin/scripts/worker-service.cjs hook cursor context"</span> &#125;</span>
+<span class="line">    ]&#125;],</span>
+<span class="line">    <span class="json-key">"UserPromptSubmit"</span>: [&#123; <span class="json-key">"matcher"</span>: <span class="json-str">""</span>, <span class="json-key">"hooks"</span>: [</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"...worker-service.cjs hook cursor session-init"</span> &#125;</span>
+<span class="line">    ]&#125;],</span>
+<span class="line">    <span class="json-key">"PostToolUse"</span>: [&#123; <span class="json-key">"matcher"</span>: <span class="json-str">""</span>, <span class="json-key">"hooks"</span>: [</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"...worker-service.cjs hook cursor observation"</span> &#125;</span>
+<span class="line">    ]&#125;],</span>
+<span class="line">    <span class="json-key">"Stop"</span>: [&#123; <span class="json-key">"matcher"</span>: <span class="json-str">""</span>, <span class="json-key">"hooks"</span>: [</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"...worker-service.cjs hook cursor summarize"</span> &#125;,</span>
+<span class="line">      &#123; <span class="json-key">"type"</span>: <span class="json-str">"command"</span>,</span>
+<span class="line">        <span class="json-key">"command"</span>: <span class="json-str">"...worker-service.cjs hook cursor session-complete"</span> &#125;</span>
+<span class="line">    ]&#125;]</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span></code></pre>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
 
-      <!-- Step 3 -->
+      <!-- Step 3: Verify -->
       <div class="install-step glass reveal">
         <div class="step-number-wrapper">
           <span class="step-number gradient-text">3</span>
         </div>
         <div class="step-content">
-          <h3 class="step-title font-heading">Start Coding</h3>
-          <p class="step-desc">
-            Memories sync across all your IDEs automatically. Use Cursor alongside Claude Code with the same shared memory.
-          </p>
+          <h3 class="step-title font-heading">Verify &amp; Start Coding</h3>
+          <p class="step-desc">Restart Cursor, then start a new AI chat session. Check that Smriti is running by watching the logs:</p>
+          <div class="code-block step-code">
+            <button
+              class="copy-btn"
+              data-code="tail -f ~/.smriti/smriti.log"
+              aria-label="Copy to clipboard"
+            >
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+            <pre><code><span class="line"><span class="code-comment"># Watch Smriti logs (after opening a Cursor AI session)</span></span>
+<span class="line"><span class="prompt">$</span> tail -f ~/.smriti/smriti.log</span>
+<span class="line"></span>
+<span class="line"><span class="code-comment"># You should see:</span></span>
+<span class="line"><span class="log-output">[worker] start: worker started</span></span>
+<span class="line"><span class="log-output">[hook] cursor context: injecting memory context</span></span>
+<span class="line"><span class="log-output">[hook] cursor session-init: session initialized</span></span></code></pre>
+          </div>
           <div class="ready-badge">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
-            <span>Memories sync across IDEs</span>
+            <span>Memories sync across Claude Code &amp; Cursor</span>
+          </div>
+          <p class="step-note">To uninstall: <code class="inline-code">bash scripts/uninstall-cursor.sh</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OpenCode Panel ===== -->
+  <div class="tab-panel" id="panel-opencode">
+    <div class="install-steps">
+
+      <!-- Step 1: Clone & Build -->
+      <div class="install-step glass reveal">
+        <div class="step-number-wrapper">
+          <span class="step-number gradient-text">1</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title font-heading">Clone &amp; Build</h3>
+          <p class="step-desc">Clone the Smriti repository and build the plugin bundle.</p>
+          <div class="code-block step-code">
+            <button
+              class="copy-btn"
+              data-code="git clone https://github.com/shubhrai2811/Smriti.git&#10;cd Smriti&#10;bun install&#10;bun run build"
+              aria-label="Copy to clipboard"
+            >
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+            <pre><code><span class="line"><span class="prompt">$</span> git clone https://github.com/shubhrai2811/Smriti.git</span>
+<span class="line"><span class="prompt">$</span> cd Smriti</span>
+<span class="line"><span class="prompt">$</span> bun install</span>
+<span class="line"><span class="prompt">$</span> bun run build</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Register Plugin -->
+      <div class="install-step glass reveal">
+        <div class="step-number-wrapper">
+          <span class="step-number gradient-text">2</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title font-heading">Register OpenCode Plugin</h3>
+          <p class="step-desc">Import the Smriti plugin in your OpenCode configuration. The plugin handles all events &mdash; session lifecycle, tool observations, context injection, and provides a <code class="inline-code">smriti_search</code> tool.</p>
+          <div class="code-block step-code">
+            <button
+              class="copy-btn"
+              data-code="import { registerSmritiPlugin } from '/path/to/Smriti/plugin/opencode/smriti-plugin.js';&#10;&#10;// In your OpenCode plugin setup:&#10;registerSmritiPlugin(app);"
+              aria-label="Copy to clipboard"
+            >
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+            <pre><code><span class="line"><span class="code-comment">// In your OpenCode plugin config:</span></span>
+<span class="line"><span class="kw">import</span> &#123; registerSmritiPlugin &#125; <span class="kw">from</span></span>
+<span class="line">  <span class="str">"/path/to/Smriti/plugin/opencode/smriti-plugin.js"</span>;</span>
+<span class="line"></span>
+<span class="line"><span class="code-comment">// Register with your OpenCode app instance:</span></span>
+<span class="line"><span class="fn">registerSmritiPlugin</span>(app);</span></code></pre>
+          </div>
+          <div class="opencode-events">
+            <h4 class="events-title">Events handled automatically:</h4>
+            <div class="events-grid">
+              <span class="event-tag"><code>session.create</code></span>
+              <span class="event-tag"><code>tool.execute.after</code></span>
+              <span class="event-tag"><code>session.complete</code></span>
+              <span class="event-tag"><code>chat.system.transform</code></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Verify -->
+      <div class="install-step glass reveal">
+        <div class="step-number-wrapper">
+          <span class="step-number gradient-text">3</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title font-heading">Verify &amp; Start Coding</h3>
+          <p class="step-desc">The plugin reads the worker PID from <code class="inline-code">~/.smriti/worker.pid</code> and communicates over HTTP. Make sure the Smriti worker is running (it auto-starts from Claude Code or Cursor hooks). Check logs:</p>
+          <div class="code-block step-code">
+            <button
+              class="copy-btn"
+              data-code="tail -f ~/.smriti/smriti.log"
+              aria-label="Copy to clipboard"
+            >
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+            <pre><code><span class="line"><span class="prompt">$</span> tail -f ~/.smriti/smriti.log</span></code></pre>
+          </div>
+          <div class="ready-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span>Shared memory database across all IDEs</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- OpenCode Panel -->
-  <div class="tab-panel" id="panel-opencode">
-    <div class="install-steps">
-      <!-- Step 1 -->
-      <div class="install-step glass reveal">
-        <div class="step-number-wrapper">
-          <span class="step-number gradient-text">1</span>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title font-heading">Clone &amp; Build</h3>
-          <p class="step-desc">Clone the repository and build with Bun.</p>
-          <div class="code-block step-code">
-            <button
-              class="copy-btn"
-              data-code="git clone https://github.com/shubhrai2811/Smriti.git
-cd Smriti && bun install && bun run build"
-              aria-label="Copy to clipboard"
-            >
-              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </button>
-            <pre><code><span class="line"><span class="comment">$ </span>git clone https://github.com/shubhrai2811/Smriti.git</span>
-<span class="line"><span class="comment">$ </span>cd Smriti && bun install && bun run build</span></code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="install-step glass reveal">
-        <div class="step-number-wrapper">
-          <span class="step-number gradient-text">2</span>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title font-heading">Configure OpenCode</h3>
-          <p class="step-desc">Add Smriti hooks to your OpenCode configuration.</p>
-          <div class="code-block step-code">
-            <button
-              class="copy-btn"
-              data-code="# Add Smriti hooks to your OpenCode config
-# See README for OpenCode integration"
-              aria-label="Copy to clipboard"
-            >
-              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </button>
-            <pre><code><span class="line"><span class="comment"># Add Smriti hooks to your OpenCode config</span></span>
-<span class="line"><span class="comment"># See README for OpenCode integration</span></span></code></pre>
-          </div>
-          <a href="https://github.com/shubhrai2811/Smriti#opencode-integration" class="step-link" target="_blank" rel="noopener noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            View OpenCode setup guide
-          </a>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="install-step glass reveal">
-        <div class="step-number-wrapper">
-          <span class="step-number gradient-text">3</span>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title font-heading">Start Coding</h3>
-          <p class="step-desc">
-            All memories are stored in a shared SQLite database. Switch between IDEs without losing context.
-          </p>
-          <div class="ready-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-            <span>Shared memory database</span>
-          </div>
-        </div>
-      </div>
+  <!-- CLI Tools callout -->
+  <div class="cli-callout glass-subtle reveal">
+    <h3 class="cli-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="4 17 10 11 4 5" />
+        <line x1="12" y1="19" x2="20" y2="19" />
+      </svg>
+      CLI Tools (all IDEs)
+    </h3>
+    <p class="cli-desc">Once installed, use the Smriti CLI from any terminal:</p>
+    <div class="code-block step-code">
+      <button
+        class="copy-btn"
+        data-code="smriti search 'authentication patterns'&#10;smriti stats&#10;smriti config&#10;smriti config set context.tokenBudget 8000"
+        aria-label="Copy to clipboard"
+      >
+        <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </button>
+      <pre><code><span class="line"><span class="prompt">$</span> smriti search <span class="str">"authentication patterns"</span>   <span class="code-comment"># Semantic search</span></span>
+<span class="line"><span class="prompt">$</span> smriti stats                                <span class="code-comment"># Memory statistics</span></span>
+<span class="line"><span class="prompt">$</span> smriti config                               <span class="code-comment"># View all settings</span></span>
+<span class="line"><span class="prompt">$</span> smriti config set context.tokenBudget 8000  <span class="code-comment"># Change a setting</span></span></code></pre>
     </div>
   </div>
 </section>
 
-<script>
-  // Tab switching
-  document.querySelectorAll('.ide-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-tab');
-      if (!target) return;
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    document.querySelectorAll('.ide-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var target = tab.getAttribute('data-tab');
+        if (!target) return;
 
-      // Deactivate all tabs
-      document.querySelectorAll('.ide-tab').forEach((t) => t.classList.remove('active'));
-      // Activate clicked tab
-      tab.classList.add('active');
+        document.querySelectorAll('.ide-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
 
-      // Hide all panels
-      document.querySelectorAll('.tab-panel').forEach((panel) => {
-        panel.classList.remove('active');
-      });
-
-      // Show target panel
-      const targetPanel = document.getElementById(`panel-${target}`);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-
-        // Trigger reveal for newly visible steps
-        targetPanel.querySelectorAll('.reveal').forEach((el) => {
-          el.classList.add('visible');
+        document.querySelectorAll('.tab-panel').forEach(function(panel) {
+          panel.classList.remove('active');
         });
-      }
-    });
-  });
 
-  // Copy to clipboard
-  document.querySelectorAll('#install .copy-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const code = btn.getAttribute('data-code') || '';
-      navigator.clipboard.writeText(code).then(() => {
-        const copyIcon = btn.querySelector('.copy-icon') as HTMLElement;
-        const checkIcon = btn.querySelector('.check-icon') as HTMLElement;
-        if (copyIcon && checkIcon) {
-          copyIcon.style.display = 'none';
-          checkIcon.style.display = 'block';
-          setTimeout(() => {
-            copyIcon.style.display = 'block';
-            checkIcon.style.display = 'none';
-          }, 2000);
+        var targetPanel = document.getElementById('panel-' + target);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+          targetPanel.querySelectorAll('.reveal').forEach(function(el) {
+            el.classList.add('visible');
+          });
         }
+      });
+    });
+
+    // Copy to clipboard
+    document.querySelectorAll('#install .copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var code = btn.getAttribute('data-code') || '';
+        navigator.clipboard.writeText(code).then(function() {
+          var copyIcon = btn.querySelector('.copy-icon');
+          var checkIcon = btn.querySelector('.check-icon');
+          if (copyIcon && checkIcon) {
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function() {
+              copyIcon.style.display = 'block';
+              checkIcon.style.display = 'none';
+            }, 2000);
+          }
+        });
       });
     });
   });
@@ -365,7 +504,7 @@ cd Smriti && bun install && bun run build"
   }
 
   .install-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .install-header .section-subtitle {
@@ -374,6 +513,64 @@ cd Smriti && bun install && bun run build"
 
   .font-heading {
     font-family: var(--font-heading);
+  }
+
+  /* ===== Prerequisites ===== */
+  .prereq-box {
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    padding: 1.25rem 1.75rem;
+    text-align: left;
+  }
+
+  .prereq-title {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
+  }
+
+  :global([data-theme="light"]) .prereq-title {
+    color: #1e293b;
+  }
+
+  .prereq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .prereq-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+  }
+
+  :global([data-theme="light"]) .prereq-item {
+    color: #475569;
+  }
+
+  .prereq-item svg {
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  .prereq-link {
+    color: var(--color-cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+  }
+
+  :global([data-theme="light"]) .prereq-link {
+    color: var(--color-light-accent);
+    border-bottom-color: rgba(14, 165, 233, 0.3);
+  }
+
+  .prereq-link:hover {
+    border-bottom-color: var(--color-cyan);
   }
 
   /* ===== IDE Tabs ===== */
@@ -432,20 +629,19 @@ cd Smriti && bun install && bun run build"
     opacity: 1;
   }
 
-  /* Light theme tabs */
-  [data-theme="light"] .ide-tab {
+  :global([data-theme="light"]) .ide-tab {
     background: rgba(255, 255, 255, 0.6);
     border-color: rgba(0, 0, 0, 0.08);
     color: #64748b;
   }
 
-  [data-theme="light"] .ide-tab:hover {
+  :global([data-theme="light"]) .ide-tab:hover {
     color: #334155;
     border-color: rgba(0, 0, 0, 0.15);
     background: rgba(255, 255, 255, 0.8);
   }
 
-  [data-theme="light"] .ide-tab.active {
+  :global([data-theme="light"]) .ide-tab.active {
     color: #0f172a;
     background-image: linear-gradient(rgba(14, 165, 233, 0.06), rgba(139, 92, 246, 0.06)),
                       linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899);
@@ -466,14 +662,8 @@ cd Smriti && bun install && bun run build"
   }
 
   @keyframes panelFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ===== Install Steps ===== */
@@ -481,7 +671,7 @@ cd Smriti && bun install && bun run build"
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
   }
 
@@ -499,7 +689,7 @@ cd Smriti && bun install && bun run build"
     border-color: rgba(0, 217, 255, 0.15);
   }
 
-  [data-theme="light"] .install-step:hover {
+  :global([data-theme="light"]) .install-step:hover {
     border-color: rgba(14, 165, 233, 0.2);
   }
 
@@ -515,7 +705,7 @@ cd Smriti && bun install && bun run build"
     border: 1px solid rgba(0, 217, 255, 0.1);
   }
 
-  [data-theme="light"] .step-number-wrapper {
+  :global([data-theme="light"]) .step-number-wrapper {
     background: rgba(14, 165, 233, 0.06);
     border-color: rgba(14, 165, 233, 0.1);
   }
@@ -539,7 +729,7 @@ cd Smriti && bun install && bun run build"
     color: #f1f5f9;
   }
 
-  [data-theme="light"] .step-title {
+  :global([data-theme="light"]) .step-title {
     color: #1e293b;
   }
 
@@ -550,8 +740,36 @@ cd Smriti && bun install && bun run build"
     margin-bottom: 1rem;
   }
 
-  [data-theme="light"] .step-desc {
+  :global([data-theme="light"]) .step-desc {
+    color: #475569;
+  }
+
+  .step-note {
+    font-size: 0.8125rem;
     color: #64748b;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  :global([data-theme="light"]) .step-note {
+    color: #94a3b8;
+  }
+
+  /* ===== Inline Code ===== */
+  .inline-code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background: rgba(0, 217, 255, 0.08);
+    color: var(--color-cyan);
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 217, 255, 0.12);
+  }
+
+  :global([data-theme="light"]) .inline-code {
+    background: rgba(14, 165, 233, 0.08);
+    color: #0369a1;
+    border-color: rgba(14, 165, 233, 0.15);
   }
 
   /* ===== Code Blocks ===== */
@@ -567,13 +785,78 @@ cd Smriti && bun install && bun run build"
 
   .step-code code {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: #e2e8f0;
     line-height: 1.7;
   }
 
-  [data-theme="light"] .step-code code {
+  :global([data-theme="light"]) .step-code code {
     color: #334155;
+  }
+
+  .step-code .line {
+    display: block;
+  }
+
+  .step-code .prompt {
+    color: var(--color-cyan);
+    font-weight: 700;
+    margin-right: 0.5rem;
+    user-select: none;
+  }
+
+  :global([data-theme="light"]) .step-code .prompt {
+    color: #0ea5e9;
+  }
+
+  .step-code .code-comment {
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  :global([data-theme="light"]) .step-code .code-comment {
+    color: #94a3b8;
+  }
+
+  .step-code .log-output {
+    color: #6b7280;
+    font-size: 0.75rem;
+  }
+
+  .step-code .kw {
+    color: var(--color-purple);
+  }
+
+  .step-code .str {
+    color: #34d399;
+  }
+
+  :global([data-theme="light"]) .step-code .str {
+    color: #059669;
+  }
+
+  .step-code .fn {
+    color: var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .step-code .fn {
+    color: #0ea5e9;
+  }
+
+  .step-code .json-key {
+    color: var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .step-code .json-key {
+    color: #0369a1;
+  }
+
+  .step-code .json-str {
+    color: #34d399;
+  }
+
+  :global([data-theme="light"]) .step-code .json-str {
+    color: #059669;
   }
 
   .copy-btn {
@@ -600,40 +883,16 @@ cd Smriti && bun install && bun run build"
     border-color: rgba(0, 217, 255, 0.3);
   }
 
-  [data-theme="light"] .copy-btn {
+  :global([data-theme="light"]) .copy-btn {
     border-color: rgba(0, 0, 0, 0.1);
     background: rgba(0, 0, 0, 0.03);
     color: #64748b;
   }
 
-  [data-theme="light"] .copy-btn:hover {
+  :global([data-theme="light"]) .copy-btn:hover {
     background: rgba(0, 0, 0, 0.06);
     color: var(--color-light-accent);
     border-color: rgba(14, 165, 233, 0.3);
-  }
-
-  /* ===== Step Link ===== */
-  .step-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    margin-top: 0.75rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--color-cyan);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    opacity: 0.8;
-  }
-
-  .step-link:hover {
-    opacity: 1;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  [data-theme="light"] .step-link {
-    color: var(--color-light-accent);
   }
 
   /* ===== Ready Badge ===== */
@@ -648,12 +907,146 @@ cd Smriti && bun install && bun run build"
     color: #10b981;
     font-size: 0.875rem;
     font-weight: 500;
+    margin-top: 0.5rem;
   }
 
-  [data-theme="light"] .ready-badge {
+  :global([data-theme="light"]) .ready-badge {
     background: rgba(5, 150, 105, 0.08);
     border-color: rgba(5, 150, 105, 0.15);
     color: #059669;
+  }
+
+  /* ===== Manual Details (Cursor) ===== */
+  .manual-details {
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  :global([data-theme="light"]) .manual-details {
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .manual-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    list-style: none;
+  }
+
+  .manual-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .manual-summary:hover {
+    color: var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .manual-summary:hover {
+    color: var(--color-light-accent);
+  }
+
+  .manual-content {
+    padding: 0 1rem 1rem;
+  }
+
+  .manual-code {
+    font-size: 0.75rem !important;
+  }
+
+  .manual-code code {
+    font-size: 0.75rem !important;
+  }
+
+  /* ===== OpenCode Events ===== */
+  .opencode-events {
+    margin-top: 1rem;
+  }
+
+  .events-title {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+
+  :global([data-theme="light"]) .events-title {
+    color: #64748b;
+  }
+
+  .events-grid {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .event-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
+    background: rgba(0, 217, 255, 0.06);
+    border: 1px solid rgba(0, 217, 255, 0.1);
+    color: var(--color-cyan);
+  }
+
+  .event-tag code {
+    font-family: var(--font-mono);
+    font-size: inherit;
+  }
+
+  :global([data-theme="light"]) .event-tag {
+    background: rgba(14, 165, 233, 0.06);
+    border-color: rgba(14, 165, 233, 0.1);
+    color: #0369a1;
+  }
+
+  /* ===== CLI Callout ===== */
+  .cli-callout {
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+    padding: 1.75rem 2rem;
+    text-align: left;
+  }
+
+  .cli-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+  }
+
+  .cli-title svg {
+    color: var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .cli-title {
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .cli-title svg {
+    color: #0ea5e9;
+  }
+
+  .cli-desc {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+  }
+
+  :global([data-theme="light"]) .cli-desc {
+    color: #64748b;
   }
 
   /* ===== Responsive ===== */
@@ -662,6 +1055,10 @@ cd Smriti && bun install && bun run build"
       flex-direction: column;
       align-items: center;
       text-align: center;
+    }
+
+    .step-content {
+      text-align: left;
     }
 
     .step-code {
@@ -675,6 +1072,10 @@ cd Smriti && bun install && bun run build"
     .ide-tab {
       padding: 0.5rem 1rem;
       font-size: 0.8125rem;
+    }
+
+    .cli-callout {
+      padding: 1.25rem 1.5rem;
     }
   }
 </style>
