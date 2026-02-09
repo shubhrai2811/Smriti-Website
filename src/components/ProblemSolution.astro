@@ -1,0 +1,183 @@
+---
+---
+
+<section id="problem-solution" class="section">
+  <div class="text-center mb-16">
+    <h2 class="reveal section-title">
+      The Problem With <span class="gradient-text">AI Memory</span>
+    </h2>
+    <p class="reveal section-subtitle mx-auto" style="transition-delay: 100ms;">
+      Current tools store memories. Smriti understands them.
+    </p>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Card 1: Dumb Context → Semantic Search -->
+    <div class="reveal card glass" style="transition-delay: 0ms;">
+      <div class="card-header">
+        <span class="problem-label">Dumb Context</span>
+        <span class="arrow">&rarr;</span>
+        <span class="solution-label glow-cyan">Semantic Search</span>
+      </div>
+      <p class="card-description">
+        Your AI gets the last N memories by time. Smriti ranks by vector similarity,
+        recency, importance, and entity relationships — so context is always relevant.
+      </p>
+      <div class="card-accent card-accent--cyan"></div>
+    </div>
+
+    <!-- Card 2: No Learning → Reflection System -->
+    <div class="reveal card glass" style="transition-delay: 150ms;">
+      <div class="card-header">
+        <span class="problem-label">No Learning</span>
+        <span class="arrow">&rarr;</span>
+        <span class="solution-label glow-cyan">Reflection System</span>
+      </div>
+      <p class="card-description">
+        Plain memory stores facts. Smriti reflects on patterns, builds a developer
+        profile, and detects corrections — your AI actually learns your preferences.
+      </p>
+      <div class="card-accent card-accent--purple"></div>
+    </div>
+
+    <!-- Card 3: Expensive → Smart Batching -->
+    <div class="reveal card glass" style="transition-delay: 300ms;">
+      <div class="card-header">
+        <span class="problem-label">Expensive</span>
+        <span class="arrow">&rarr;</span>
+        <span class="solution-label glow-cyan">Smart Batching</span>
+      </div>
+      <p class="card-description">
+        One API call per observation is wasteful. Smriti batches 5-10 observations
+        per extraction call, cutting AI costs by 60% while improving quality.
+      </p>
+      <div class="card-accent card-accent--magenta"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.1), 0 0 60px rgba(139, 92, 246, 0.05);
+  }
+
+  [data-theme="light"] .card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .problem-label {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-magenta);
+    background: var(--color-magenta-dim);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 0, 110, 0.2);
+  }
+
+  [data-theme="light"] .problem-label {
+    color: #e11d48;
+    background: rgba(225, 29, 72, 0.08);
+    border-color: rgba(225, 29, 72, 0.15);
+  }
+
+  .arrow {
+    font-size: 1.25rem;
+    color: #4a5568;
+    font-weight: 300;
+  }
+
+  .solution-label {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-cyan);
+    background: var(--color-cyan-dim);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+  }
+
+  [data-theme="light"] .solution-label {
+    color: #0ea5e9;
+    background: rgba(14, 165, 233, 0.08);
+    border-color: rgba(14, 165, 233, 0.15);
+    text-shadow: none;
+  }
+
+  .card-description {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #94a3b8;
+  }
+
+  [data-theme="light"] .card-description {
+    color: #64748b;
+  }
+
+  /* Accent gradient bar at bottom of each card */
+  .card-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover .card-accent {
+    opacity: 1;
+  }
+
+  .card-accent--cyan {
+    background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+  }
+
+  .card-accent--purple {
+    background: linear-gradient(90deg, transparent, var(--color-purple), transparent);
+  }
+
+  .card-accent--magenta {
+    background: linear-gradient(90deg, transparent, var(--color-magenta), transparent);
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+
+---
+
+<section id="privacy" class="section">
+  <div class="privacy-header reveal">
+    <h2 class="section-title privacy-title">
+      <span class="gradient-text-green">Privacy-First.</span> Always.
+    </h2>
+    <p class="section-subtitle">Your code memories never leave your machine.</p>
+  </div>
+
+  <div class="privacy-grid">
+    <!-- Local-Only Storage -->
+    <div class="privacy-card glass reveal">
+      <div class="privacy-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="20" height="12" rx="2" />
+          <path d="M12 12h.01" />
+          <path d="M17 12h.01" />
+          <path d="M7 12h.01" />
+          <path d="M2 10h20" />
+          <path d="M2 14h20" />
+        </svg>
+      </div>
+      <h3 class="privacy-card-title">Local-Only Storage</h3>
+      <p class="privacy-card-desc">All data stored in SQLite on your machine. No cloud, no sync, no servers.</p>
+    </div>
+
+    <!-- Automatic Secret Redaction -->
+    <div class="privacy-card glass reveal">
+      <div class="privacy-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      </div>
+      <h3 class="privacy-card-title">Automatic Secret Redaction</h3>
+      <p class="privacy-card-desc">Detects and strips AWS keys, API tokens, passwords, private keys, and 12+ other patterns before storage.</p>
+    </div>
+
+    <!-- Private Tag Stripping -->
+    <div class="privacy-card glass reveal">
+      <div class="privacy-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          <circle cx="12" cy="16" r="1" />
+        </svg>
+      </div>
+      <h3 class="privacy-card-title">Private Tag Stripping</h3>
+      <p class="privacy-card-desc">Wrap sensitive code in &lt;private&gt; tags. Smriti strips them before storing any observations.</p>
+    </div>
+
+    <!-- No Telemetry -->
+    <div class="privacy-card glass reveal">
+      <div class="privacy-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="2" y1="2" x2="22" y2="22" />
+        </svg>
+      </div>
+      <h3 class="privacy-card-title">No Telemetry</h3>
+      <p class="privacy-card-desc">Zero tracking, zero analytics, zero phone-home. The worker runs on localhost only.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #privacy {
+    text-align: center;
+  }
+
+  .privacy-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .privacy-title {
+    font-size: 2.5rem;
+  }
+
+  .privacy-header .section-subtitle {
+    margin: 0.75rem auto 0;
+  }
+
+  .gradient-text-green {
+    background: linear-gradient(135deg, #10b981, #00d9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  [data-theme="light"] .gradient-text-green {
+    background: linear-gradient(135deg, #059669, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .privacy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .privacy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .privacy-title {
+      font-size: 2rem;
+    }
+  }
+
+  .privacy-card {
+    padding: 2rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    border-color: rgba(16, 185, 129, 0.1);
+  }
+
+  .privacy-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.1), 0 0 60px rgba(0, 217, 255, 0.05);
+  }
+
+  [data-theme="light"] .privacy-card {
+    border-color: rgba(5, 150, 105, 0.1);
+  }
+
+  [data-theme="light"] .privacy-card:hover {
+    border-color: rgba(5, 150, 105, 0.25);
+    box-shadow: 0 4px 20px rgba(5, 150, 105, 0.1);
+  }
+
+  .privacy-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+  }
+
+  [data-theme="light"] .privacy-icon {
+    background: rgba(5, 150, 105, 0.08);
+    color: #059669;
+    border-color: rgba(5, 150, 105, 0.12);
+  }
+
+  .privacy-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #f1f5f9;
+  }
+
+  [data-theme="light"] .privacy-card-title {
+    color: #1e293b;
+  }
+
+  .privacy-card-desc {
+    font-size: 0.9375rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  [data-theme="light"] .privacy-card-desc {
+    color: #64748b;
+  }
+</style>

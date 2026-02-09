@@ -1,0 +1,154 @@
+---
+
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <span class="footer-logo-sanskrit">&#x0938;&#x094D;&#x092E;&#x0943;&#x0924;&#x093F;</span>
+        <span class="footer-logo-name font-heading">Smriti</span>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="https://github.com/AnsKM/smriti" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://github.com/AnsKM/smriti#readme" target="_blank" rel="noopener noreferrer" class="footer-link">Documentation</a>
+        <a href="https://github.com/AnsKM/smriti/issues" target="_blank" rel="noopener noreferrer" class="footer-link">Issues</a>
+        <a href="https://github.com/AnsKM/smriti/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer-link">License</a>
+      </nav>
+    </div>
+
+    <div class="footer-tagline font-mono">
+      Built with Bun, TypeScript, SQLite, and a belief that AI memory should be intelligent, private, and local.
+    </div>
+
+    <div class="footer-bottom">
+      Made with <span class="footer-heart">&hearts;</span> by the Smriti community
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 3rem 1.5rem 2rem;
+    margin-top: 2rem;
+  }
+
+  [data-theme="light"] .site-footer {
+    border-top-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-logo-sanskrit {
+    font-size: 1.25rem;
+    opacity: 0.6;
+  }
+
+  .footer-logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  [data-theme="light"] .footer-logo-name {
+    color: #1e293b;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--color-cyan);
+  }
+
+  [data-theme="light"] .footer-link {
+    color: #94a3b8;
+  }
+
+  [data-theme="light"] .footer-link:hover {
+    color: var(--color-light-accent);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: #475569;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  [data-theme="light"] .footer-tagline {
+    color: #94a3b8;
+  }
+
+  .footer-bottom {
+    font-size: 0.8125rem;
+    color: #475569;
+    text-align: center;
+  }
+
+  [data-theme="light"] .footer-bottom {
+    color: #94a3b8;
+  }
+
+  .footer-heart {
+    color: #ef4444;
+  }
+
+  @media (max-width: 640px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-links {
+      justify-content: center;
+    }
+  }
+</style>

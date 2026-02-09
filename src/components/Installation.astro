@@ -1,0 +1,293 @@
+---
+
+---
+
+<section id="install" class="section">
+  <div class="install-header reveal">
+    <h2 class="section-title">
+      Get Started in <span class="gradient-text">3 Steps</span>
+    </h2>
+    <p class="section-subtitle">From zero to intelligent memory in under a minute.</p>
+  </div>
+
+  <div class="install-steps">
+    <!-- Step 1: Clone & Build -->
+    <div class="install-step glass reveal">
+      <div class="step-number-wrapper">
+        <span class="step-number gradient-text">1</span>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title font-heading">Clone &amp; Build</h3>
+        <p class="step-desc">Clone the repository and build with Bun.</p>
+        <div class="code-block step-code">
+          <button
+            class="copy-btn"
+            data-code="git clone https://github.com/AnsKM/smriti.git
+cd smriti && bun install && bun run build"
+            aria-label="Copy to clipboard"
+          >
+            <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </button>
+          <pre><code><span class="line"><span class="comment">$ </span>git clone https://github.com/AnsKM/smriti.git</code></span>
+<span class="line"><span class="comment">$ </span>cd smriti && bun install && bun run build</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Register Plugin -->
+    <div class="install-step glass reveal">
+      <div class="step-number-wrapper">
+        <span class="step-number gradient-text">2</span>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title font-heading">Register Plugin</h3>
+        <p class="step-desc">Add Smriti as a Claude Code plugin.</p>
+        <div class="code-block step-code">
+          <button
+            class="copy-btn"
+            data-code="claude plugin add /path/to/smriti/plugin"
+            aria-label="Copy to clipboard"
+          >
+            <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </button>
+          <pre><code><span class="line"><span class="comment">$ </span>claude plugin add /path/to/smriti/plugin</span></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Start Coding -->
+    <div class="install-step glass reveal">
+      <div class="step-number-wrapper">
+        <span class="step-number gradient-text">3</span>
+      </div>
+      <div class="step-content">
+        <h3 class="step-title font-heading">Start Coding</h3>
+        <p class="step-desc">
+          That's it. Smriti activates automatically on your next Claude Code session. Your AI will start remembering.
+        </p>
+        <div class="ready-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <span>Ready to go</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('#install .copy-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const code = btn.getAttribute('data-code') || '';
+      navigator.clipboard.writeText(code).then(() => {
+        const copyIcon = btn.querySelector('.copy-icon') as HTMLElement;
+        const checkIcon = btn.querySelector('.check-icon') as HTMLElement;
+        if (copyIcon && checkIcon) {
+          copyIcon.style.display = 'none';
+          checkIcon.style.display = 'block';
+          setTimeout(() => {
+            copyIcon.style.display = 'block';
+            checkIcon.style.display = 'none';
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  #install {
+    text-align: center;
+  }
+
+  .install-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .install-header .section-subtitle {
+    margin: 0.75rem auto 0;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .install-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .install-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+
+  .install-step:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 217, 255, 0.15);
+  }
+
+  [data-theme="light"] .install-step:hover {
+    border-color: rgba(14, 165, 233, 0.2);
+  }
+
+  .step-number-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(0, 217, 255, 0.06);
+    border: 1px solid rgba(0, 217, 255, 0.1);
+  }
+
+  [data-theme="light"] .step-number-wrapper {
+    background: rgba(14, 165, 233, 0.06);
+    border-color: rgba(14, 165, 233, 0.1);
+  }
+
+  .step-number {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .step-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #f1f5f9;
+  }
+
+  [data-theme="light"] .step-title {
+    color: #1e293b;
+  }
+
+  .step-desc {
+    font-size: 0.9375rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  [data-theme="light"] .step-desc {
+    color: #64748b;
+  }
+
+  .step-code {
+    position: relative;
+  }
+
+  .step-code pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .step-code code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    line-height: 1.7;
+  }
+
+  [data-theme="light"] .step-code code {
+    color: #334155;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-cyan);
+    border-color: rgba(0, 217, 255, 0.3);
+  }
+
+  [data-theme="light"] .copy-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.03);
+    color: #64748b;
+  }
+
+  [data-theme="light"] .copy-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-light-accent);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  .ready-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  [data-theme="light"] .ready-badge {
+    background: rgba(5, 150, 105, 0.08);
+    border-color: rgba(5, 150, 105, 0.15);
+    color: #059669;
+  }
+
+  @media (max-width: 640px) {
+    .install-step {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .step-code {
+      text-align: left;
+    }
+  }
+</style>

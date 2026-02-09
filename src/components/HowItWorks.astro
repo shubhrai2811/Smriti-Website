@@ -1,0 +1,175 @@
+---
+const steps = [
+  {
+    num: 1,
+    name: "Hook",
+    desc: "Claude Code triggers Smriti via hooks on tool calls and session events",
+  },
+  {
+    num: 2,
+    name: "Batch",
+    desc: "Observations are queued and batched (5-10 per call) for efficiency",
+  },
+  {
+    num: 3,
+    name: "Extract",
+    desc: "AI extracts facts, preferences, corrections, and entities from batches",
+  },
+  {
+    num: 4,
+    name: "Store",
+    desc: "Memories saved to SQLite with embeddings via local ONNX model",
+  },
+  {
+    num: 5,
+    name: "Inject",
+    desc: "Relevant context injected into CLAUDE.md on every session start",
+  },
+];
+---
+
+<section id="how-it-works" class="relative">
+  <div class="section">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="reveal section-title">
+        How It <span class="gradient-text">Works</span>
+      </h2>
+      <p class="reveal section-subtitle mx-auto" style="transition-delay: 100ms;">
+        From hook to context injection in five steps. Zero config, fully automatic.
+      </p>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="reveal flow-container" style="transition-delay: 200ms;">
+      {steps.map((step, i) => (
+        <Fragment>
+          <div class="flow-step glass-subtle flow-card">
+            <div class="step-number">{step.num}</div>
+            <h3 class="step-name">{step.name}</h3>
+            <p class="step-desc">{step.desc}</p>
+          </div>
+          {i < steps.length - 1 && (
+            <div class="flow-arrow-wrapper" aria-hidden="true">
+              <svg class="flow-arrow flow-arrow-horizontal" width="40" height="24" viewBox="0 0 40 24" fill="none">
+                <path d="M0 12h32M26 6l8 6-8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg class="flow-arrow flow-arrow-vertical" width="24" height="40" viewBox="0 0 24 40" fill="none">
+                <path d="M12 0v32M6 26l6 8 6-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          )}
+        </Fragment>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Flow container: horizontal on desktop, vertical on mobile */
+  .flow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .flow-card {
+    flex: 1;
+    max-width: 200px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .flow-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 217, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+  }
+
+  [data-theme="light"] .flow-card:hover {
+    border-color: rgba(14, 165, 233, 0.2);
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-cyan), var(--color-purple));
+    color: #0a0e1a;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .step-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-cyan);
+    margin-bottom: 0.5rem;
+  }
+
+  [data-theme="light"] .step-name {
+    color: #0ea5e9;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #94a3b8;
+  }
+
+  [data-theme="light"] .step-desc {
+    color: #64748b;
+  }
+
+  /* Arrows between steps */
+  .flow-arrow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 0.25rem;
+  }
+
+  .flow-arrow-horizontal {
+    display: block;
+  }
+
+  .flow-arrow-vertical {
+    display: none;
+  }
+
+  /* ===== Responsive: vertical on mobile ===== */
+  @media (max-width: 900px) {
+    .flow-container {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .flow-card {
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .flow-arrow-wrapper {
+      padding: 0.25rem 0;
+    }
+
+    .flow-arrow-horizontal {
+      display: none;
+    }
+
+    .flow-arrow-vertical {
+      display: block;
+    }
+  }
+</style>

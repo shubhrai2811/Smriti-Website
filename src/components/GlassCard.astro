@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  glow?: 'cyan' | 'purple' | 'magenta' | 'none';
+  hover?: boolean;
+}
+
+const { class: className = '', glow = 'none', hover = true } = Astro.props;
+const glowClass = glow !== 'none' ? `glow-box-${glow}` : '';
+const hoverClass = hover ? 'hover:-translate-y-1 hover:border-white/15' : '';
+---
+
+<div class:list={['glass p-6 transition-all duration-300', glowClass, hoverClass, className]}>
+  <slot />
+</div>
+
+<style>
+  [data-theme="light"] div:hover {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+</style>

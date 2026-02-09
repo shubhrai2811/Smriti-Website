@@ -1,0 +1,171 @@
+---
+const metrics = [
+  { value: 330, suffix: '', label: 'Passing Tests' },
+  { value: 60, suffix: '%', label: 'Fewer API Calls' },
+  { value: 70, suffix: '%', label: 'Token Savings' },
+  { value: 3, suffix: '', label: 'IDEs Supported' },
+  { value: 0, suffix: '', label: 'Python Dependencies' },
+];
+---
+
+<section id="metrics" class="metrics-section">
+  <div class="metrics-strip glass-subtle reveal">
+    <div class="metrics-row">
+      {metrics.map((metric, i) => (
+        <div class="metric-item" style={`transition-delay: ${i * 100}ms`}>
+          <span
+            class="counter gradient-text"
+            data-target={metric.value}
+            data-suffix={metric.suffix}
+          >
+            0{metric.suffix}
+          </span>
+          <span class="metric-label">{metric.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function animateCounter(el, target, suffix, duration) {
+      var start = performance.now();
+
+      function tick(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var easedProgress = easeOutExpo(progress);
+        var current = Math.round(easedProgress * target);
+        el.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    var animated = false;
+
+    function onIntersect(entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          var counters = entry.target.querySelectorAll('.counter');
+          counters.forEach(function (counter) {
+            var target = parseInt(counter.getAttribute('data-target'), 10);
+            var suffix = counter.getAttribute('data-suffix') || '';
+
+            // Special case: 0 Python Dependencies — no animation needed
+            if (target === 0) {
+              counter.textContent = '0' + suffix;
+              return;
+            }
+
+            animateCounter(counter, target, suffix, 2000);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var section = document.getElementById('metrics');
+      if (!section) return;
+
+      var strip = section.querySelector('.metrics-strip');
+      if (!strip) return;
+
+      var observer = new IntersectionObserver(onIntersect, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -40px 0px',
+      });
+
+      observer.observe(strip);
+    });
+  })();
+</script>
+
+<style>
+  .metrics-section {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .metrics-strip {
+    padding: 2.5rem 2rem;
+  }
+
+  .metrics-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem 1rem;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 1 0;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  .counter {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 0.02em;
+  }
+
+  [data-theme="light"] .metric-label {
+    color: #64748b;
+  }
+
+  /* Responsive: stack on small screens */
+  @media (max-width: 768px) {
+    .metrics-section {
+      padding: 2rem 1rem;
+    }
+
+    .metrics-strip {
+      padding: 2rem 1.25rem;
+    }
+
+    .metrics-row {
+      justify-content: center;
+    }
+
+    .metric-item {
+      flex: 0 1 calc(50% - 1rem);
+    }
+
+    .counter {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .metric-item {
+      flex: 0 1 100%;
+    }
+  }
+</style>

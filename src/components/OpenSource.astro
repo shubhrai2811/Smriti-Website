@@ -1,0 +1,164 @@
+---
+
+---
+
+<section id="open-source" class="section">
+  <div class="oss-wrapper glass reveal">
+    <div class="oss-glow"></div>
+
+    <h2 class="section-title oss-title">
+      <span class="gradient-text">Open Source.</span> Free Forever.
+    </h2>
+    <p class="oss-subtitle">MIT Licensed — built by developers, for developers.</p>
+
+    <div class="oss-actions">
+      <a
+        href="https://github.com/AnsKM/smriti"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary oss-star-btn"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+        Star on GitHub
+      </a>
+
+      <a
+        href="https://github.com/AnsKM/smriti"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary oss-view-btn"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <p class="oss-contribute">Contributions welcome — check the <a href="https://github.com/AnsKM/smriti/issues" target="_blank" rel="noopener noreferrer" class="oss-link">issues tab</a> to get started.</p>
+  </div>
+</section>
+
+<style>
+  #open-source {
+    text-align: center;
+  }
+
+  .oss-wrapper {
+    padding: 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .oss-glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.08) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  [data-theme="light"] .oss-glow {
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, rgba(139, 92, 246, 0.03) 50%, transparent 70%);
+  }
+
+  .oss-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+
+  .oss-subtitle {
+    font-size: 1.125rem;
+    color: #94a3b8;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  [data-theme="light"] .oss-subtitle {
+    color: #64748b;
+  }
+
+  .oss-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .oss-star-btn {
+    border-color: rgba(234, 179, 8, 0.3);
+    color: #eab308;
+  }
+
+  .oss-star-btn:hover {
+    border-color: #eab308;
+    background: rgba(234, 179, 8, 0.1);
+  }
+
+  [data-theme="light"] .oss-star-btn {
+    color: #ca8a04;
+    border-color: rgba(202, 138, 4, 0.3);
+  }
+
+  [data-theme="light"] .oss-star-btn:hover {
+    border-color: #ca8a04;
+    background: rgba(202, 138, 4, 0.1);
+  }
+
+  .oss-contribute {
+    font-size: 0.875rem;
+    color: #64748b;
+    position: relative;
+  }
+
+  [data-theme="light"] .oss-contribute {
+    color: #94a3b8;
+  }
+
+  .oss-link {
+    color: var(--color-cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .oss-link:hover {
+    border-bottom-color: var(--color-cyan);
+  }
+
+  [data-theme="light"] .oss-link {
+    color: var(--color-light-accent);
+    border-bottom-color: rgba(14, 165, 233, 0.3);
+  }
+
+  [data-theme="light"] .oss-link:hover {
+    border-bottom-color: var(--color-light-accent);
+  }
+
+  @media (max-width: 768px) {
+    .oss-wrapper {
+      padding: 3rem 1.5rem;
+    }
+
+    .oss-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .oss-actions {
+      flex-direction: column;
+    }
+  }
+</style>

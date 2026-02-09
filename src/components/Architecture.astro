@@ -1,0 +1,495 @@
+---
+
+---
+
+<section id="architecture" class="section">
+  <div class="reveal">
+    <h2 class="section-title gradient-text">Architecture</h2>
+    <p class="section-subtitle">
+      Built for reliability, speed, and zero overhead. Every design choice serves a purpose.
+    </p>
+  </div>
+
+  <!-- Tech Stack Pills -->
+  <div class="reveal tech-stack">
+    <div class="pill-row">
+      <span class="pill pill-cyan">Bun</span>
+      <span class="pill pill-cyan">TypeScript</span>
+      <span class="pill pill-purple">SQLite</span>
+      <span class="pill pill-purple">sqlite-vec</span>
+      <span class="pill pill-magenta">ONNX Runtime</span>
+      <span class="pill pill-cyan">Hono</span>
+      <span class="pill pill-purple">Claude SDK</span>
+      <span class="pill pill-magenta">esbuild</span>
+    </div>
+  </div>
+
+  <!-- Architecture Diagram -->
+  <div class="reveal diagram-container glass">
+    <h3 class="diagram-title">Data Flow</h3>
+
+    <div class="diagram">
+      <!-- Row 1: Claude Code -> Hook Events -> Smriti Worker -->
+      <div class="diagram-row">
+        <div class="diagram-box box-source">
+          <div class="box-icon">&#9654;</div>
+          <div class="box-label">Claude Code</div>
+        </div>
+
+        <div class="diagram-arrow">
+          <div class="arrow-line"></div>
+          <div class="arrow-label">hooks</div>
+        </div>
+
+        <div class="diagram-box box-events">
+          <div class="box-icon">&#9889;</div>
+          <div class="box-label">Hook Events</div>
+        </div>
+
+        <div class="diagram-arrow">
+          <div class="arrow-line"></div>
+          <div class="arrow-label">trigger</div>
+        </div>
+
+        <div class="diagram-box box-worker">
+          <div class="box-icon">&#9881;</div>
+          <div class="box-label">Smriti Worker</div>
+          <div class="box-sub">Hono</div>
+        </div>
+      </div>
+
+      <!-- Vertical connectors from worker -->
+      <div class="diagram-verticals">
+        <div class="vertical-branch branch-left">
+          <div class="vertical-line"></div>
+          <div class="diagram-arrow-down">
+            <div class="arrow-label-side">extract</div>
+          </div>
+          <div class="diagram-box box-ai">
+            <div class="box-icon">&#129302;</div>
+            <div class="box-label">AI Provider</div>
+            <div class="box-sub">Claude / OpenRouter</div>
+          </div>
+        </div>
+
+        <div class="vertical-branch branch-right">
+          <div class="vertical-line"></div>
+          <div class="diagram-arrow-down">
+            <div class="arrow-label-side">store & query</div>
+          </div>
+          <div class="diagram-box box-db">
+            <div class="box-icon">&#128451;</div>
+            <div class="box-label">SQLite DB</div>
+            <div class="box-sub">sqlite-vec</div>
+          </div>
+          <div class="vertical-line short"></div>
+          <div class="diagram-arrow-down">
+            <div class="arrow-label-side">inject</div>
+          </div>
+          <div class="diagram-box box-output">
+            <div class="box-icon">&#128196;</div>
+            <div class="box-label">CLAUDE.md</div>
+            <div class="box-sub">context injection</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Principles -->
+  <div class="reveal principles-grid">
+    <div class="principle glass-subtle">
+      <div class="principle-icon">&#128737;</div>
+      <h4 class="principle-title">Stateless worker</h4>
+      <p class="principle-desc">All state lives in SQLite. Crash-safe by design — restart anytime without data loss.</p>
+    </div>
+
+    <div class="principle glass-subtle">
+      <div class="principle-icon">&#9889;</div>
+      <h4 class="principle-title">One-shot AI calls</h4>
+      <p class="principle-desc">No persistent sessions, no orphan processes. Each extraction is a single, clean API call.</p>
+    </div>
+
+    <div class="principle glass-subtle">
+      <div class="principle-icon">&#128276;</div>
+      <h4 class="principle-title">Event-driven</h4>
+      <p class="principle-desc">No polling. Hook-triggered processing means zero overhead when idle.</p>
+    </div>
+
+    <div class="principle glass-subtle">
+      <div class="principle-icon">&#128260;</div>
+      <h4 class="principle-title">Provider-agnostic</h4>
+      <p class="principle-desc">Claude SDK primary, OpenRouter fallback. Swap providers without touching business logic.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-bottom: 4rem;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    margin: 0 auto 3rem;
+  }
+
+  /* Tech Stack Pills */
+  .tech-stack {
+    margin-bottom: 3rem;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .pill-cyan {
+    border-color: rgba(0, 217, 255, 0.25);
+    color: var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .pill-cyan {
+    border-color: rgba(14, 165, 233, 0.2);
+    color: #0284c7;
+  }
+
+  .pill-purple {
+    border-color: rgba(139, 92, 246, 0.25);
+    color: var(--color-purple);
+  }
+
+  :global([data-theme="light"]) .pill-purple {
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #7c3aed;
+  }
+
+  .pill-magenta {
+    border-color: rgba(255, 0, 110, 0.2);
+    color: var(--color-magenta);
+  }
+
+  :global([data-theme="light"]) .pill-magenta {
+    border-color: rgba(236, 72, 153, 0.2);
+    color: #db2777;
+  }
+
+  /* Diagram Container */
+  .diagram-container {
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+  }
+
+  .diagram-title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  :global([data-theme="light"]) .diagram-title {
+    color: #64748b;
+  }
+
+  .diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+  }
+
+  /* Horizontal row */
+  .diagram-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
+  }
+
+  /* Boxes */
+  .diagram-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    min-width: 130px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  :global([data-theme="light"]) .diagram-box {
+    border-color: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .diagram-box:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 217, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 217, 255, 0.1);
+  }
+
+  :global([data-theme="light"]) .diagram-box:hover {
+    border-color: rgba(14, 165, 233, 0.3);
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1);
+  }
+
+  .box-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .box-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+  }
+
+  :global([data-theme="light"]) .box-label {
+    color: #1e293b;
+  }
+
+  .box-sub {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+  }
+
+  /* Special box colors */
+  .box-worker {
+    border-color: rgba(0, 217, 255, 0.3);
+    background: rgba(0, 217, 255, 0.06);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.08);
+  }
+
+  :global([data-theme="light"]) .box-worker {
+    border-color: rgba(14, 165, 233, 0.25);
+    background: rgba(14, 165, 233, 0.05);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.06);
+  }
+
+  .box-ai {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.06);
+  }
+
+  :global([data-theme="light"]) .box-ai {
+    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba(139, 92, 246, 0.04);
+  }
+
+  .box-db {
+    border-color: rgba(0, 217, 255, 0.2);
+    background: rgba(0, 217, 255, 0.04);
+  }
+
+  :global([data-theme="light"]) .box-db {
+    border-color: rgba(14, 165, 233, 0.15);
+    background: rgba(14, 165, 233, 0.03);
+  }
+
+  .box-output {
+    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba(139, 92, 246, 0.04);
+  }
+
+  /* Horizontal arrows */
+  .diagram-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.25rem;
+    min-width: 60px;
+  }
+
+  .arrow-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 217, 255, 0.1), rgba(0, 217, 255, 0.5), rgba(0, 217, 255, 0.1));
+    position: relative;
+  }
+
+  .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--color-cyan);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+
+  :global([data-theme="light"]) .arrow-line {
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.4), rgba(14, 165, 233, 0.1));
+  }
+
+  :global([data-theme="light"]) .arrow-line::after {
+    border-left-color: #0ea5e9;
+  }
+
+  .arrow-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: #64748b;
+    margin-top: 0.375rem;
+  }
+
+  /* Vertical branches */
+  .diagram-verticals {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    margin-top: 0;
+  }
+
+  .vertical-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vertical-line {
+    width: 2px;
+    height: 2rem;
+    background: linear-gradient(180deg, rgba(0, 217, 255, 0.5), rgba(0, 217, 255, 0.1));
+  }
+
+  :global([data-theme="light"]) .vertical-line {
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.4), rgba(14, 165, 233, 0.1));
+  }
+
+  .vertical-line.short {
+    height: 1.25rem;
+  }
+
+  .diagram-arrow-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .diagram-arrow-down::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--color-cyan);
+  }
+
+  :global([data-theme="light"]) .diagram-arrow-down::before {
+    border-top-color: #0ea5e9;
+  }
+
+  .arrow-label-side {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Principles Grid */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .principle {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .principle:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 217, 255, 0.15);
+  }
+
+  :global([data-theme="light"]) .principle:hover {
+    border-color: rgba(14, 165, 233, 0.15);
+  }
+
+  .principle-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .principle-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-cyan);
+    margin-bottom: 0.5rem;
+  }
+
+  :global([data-theme="light"]) .principle-title {
+    color: #0284c7;
+  }
+
+  .principle-desc {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  :global([data-theme="light"]) .principle-desc {
+    color: #64748b;
+  }
+
+  /* Responsive diagram */
+  @media (max-width: 768px) {
+    .diagram-container {
+      padding: 1.5rem;
+    }
+
+    .diagram-row {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .diagram-arrow {
+      transform: rotate(90deg);
+      min-width: unset;
+      padding: 0.5rem 0;
+    }
+
+    .diagram-verticals {
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+    }
+
+    .diagram-box {
+      min-width: 160px;
+    }
+  }
+</style>
